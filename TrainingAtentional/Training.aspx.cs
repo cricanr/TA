@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
+using System.Web.UI; 
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web.UI.HtmlControls;
@@ -29,7 +29,7 @@ namespace TrainingAtentional
 
         int CurrentTrail
         {
-            get { return (int)ViewState["CurrentTrail"]; }
+            get { return (int)(ViewState["CurrentTrail"] ?? 1); }
             set { ViewState["CurrentTrail"] = value; }
         }
 
@@ -49,7 +49,7 @@ namespace TrainingAtentional
         {
             get {
 
-                if (ExtraMySession.Stage == 1)
+                if (ExtraMySession != null && ExtraMySession.Stage == 1)
                 {
                     return CurrentTestTrail <= CONST_totalTestTrials;
                 }
@@ -127,7 +127,7 @@ namespace TrainingAtentional
                     MapAPhoto = new Dictionary<int, string>();
 
                     //Body.Attributes.Add("onkeypress", "OnBodyKeyPressed();");
-                    if (ExtraMySession.Stage == 1)
+                    if (ExtraMySession != null && ExtraMySession.Stage == 1)
                         literalDocumentKeyPressed.Text = "<script type='text/javascript'> document.onkeypress = OnDocumentStartTrialKeyPressed; </script> ";
                     else
                         literalDocumentKeyPressed.Text = "<script type='text/javascript'> document.onkeypress = OnDocumentStartNonTestTrialKeyPressed; </script> ";
@@ -145,7 +145,7 @@ namespace TrainingAtentional
 
                     //CurrentTrail = 0;
 
-                    if (ExtraMySession.Stage > 1)
+                    if (ExtraMySession != null && ExtraMySession.Stage > 1)
                     {
                         CurrentTrail = 0;
                     }
@@ -163,11 +163,11 @@ namespace TrainingAtentional
 
                     FillPhotos(PhotoIDPositionSequence, CurrentHPosition);
                     
-
-                    if (ExtraMySession.Stage == 1)
+                    // TODO: check if this logic is still needed
+                    //if (ExtraMySession.Stage == 1)
                         hIsTest.Value = "1";
-                    else
-                        hIsTest.Value = "0";
+                    //else
+                    //    hIsTest.Value = "0";
 
 
                 }
@@ -227,7 +227,7 @@ namespace TrainingAtentional
 
                         #region CazuriTestTrail
 
-                        if (ExtraMySession.Stage == 1)
+                        if (ExtraMySession != null && ExtraMySession.Stage == 1)
                         {
                             if (CurrentTestTrail < CONST_totalTestTrials)//
                             {
@@ -270,7 +270,7 @@ namespace TrainingAtentional
                         #region NormalTrial
 
 
-                        if ((ExtraMySession.Stage == 1 && CurrentTestTrail > CONST_totalTestTrials) || (ExtraMySession.Stage > 1 )) //s-a salvat in BD si ultimul test
+                        if ((ExtraMySession != null && ExtraMySession.Stage == 1 && CurrentTestTrail > CONST_totalTestTrials) || (ExtraMySession != null && ExtraMySession.Stage > 1)) //s-a salvat in BD si ultimul test
                                 {
                                     CurrentTrail++;
                                     if (CurrentTrail < CONST_totalTrials)//198
@@ -396,16 +396,28 @@ namespace TrainingAtentional
 
         private int GetHPosition(int currentHPosition)
         {
-            int result = 0;
+            int newPosition = 0;
             try
             {
-                result = MethodPool.GetPositionPercentage(4, 15, 12, 85, new List<int>() { 5, 6, 10, 11, 0, 1, 2, 3, 4, 7, 8, 9, 12, 13, 14, 15 }, currentHPosition);
+                
+                var generatePosition = new GeneratePosition();
+                generatePosition.ImageOrder = new List<int>() { 5, 6, 10, 11, 0, 1, 2, 3, 4, 7, 8, 9, 12, 13, 14, 15 };
+                generatePosition.FirstNumber = 4;
+                generatePosition.HorizontalPosition = 15;
+                generatePosition.SecondNumber = 12;
+                generatePosition.VerticalPosition = 85;
+                newPosition = generatePosition.GetPositionPercentage(currentHPosition);
+
+                while (newPosition == currentHPosition)
+                {
+                    newPosition = generatePosition.GetPositionPercentage(currentHPosition);
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return result;
+            return newPosition;
         }
 
         private List<int> GetPhotoIDSequence(int currentHPosition, int currentHPhotoID)
@@ -441,8 +453,8 @@ namespace TrainingAtentional
 
         private void FillPhotos(List<int> photoIDSequence, int currentHPosition)
         {
-            //try
-            //{
+            try
+            {
 
                 for (int i = 0; i < photoIDSequence.Count; i++)
                 {
@@ -458,11 +470,11 @@ namespace TrainingAtentional
                         img.ImageUrl = MethodPool.GetImagePath(PhotoFolderType.Training_Angry, MapAPhoto[photoID]);
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void FillMapHPhoto(Dictionary<int, string> mapPhoto)
