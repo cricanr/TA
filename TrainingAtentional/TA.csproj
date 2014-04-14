@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\UserInfo.aspx" />
-    <Content Include="Error\04-00-12.txt" />
     <Content Include="Exit.aspx" />
     <Content Include="ExitOrContinueToStep2.aspx" />
     <Content Include="ExitOrContinueToStep3.aspx" />
@@ -214,6 +213,7 @@
     <Compile Include="Finish.aspx.designer.cs">
       <DependentUpon>Finish.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GeneratePosition.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
@@ -293,6 +294,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Properties\PublishProfiles\trainingatentional2sesiuni - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\trainingatentional2sesiuni - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\TrainingAtentionalCopii2Sesiuni.pubxml" />
   </ItemGroup>
   <PropertyGroup>
