@@ -18,12 +18,12 @@ namespace TrainingAtentional.Admin
                     string userName = (Session["mySession"] as MySession).UserName;
                     if (userName != Settings.CONST_AdminFullName)
                     {
-                        Response.Redirect("~/Register.aspx");
+                        Response.Redirect("~/Register.aspx", false);
                     }
                 }
                 else
                 {
-                    Response.Redirect("~/Register.aspx");
+                    Response.Redirect("~/Register.aspx", false);
                 }
             }
         }
@@ -31,7 +31,7 @@ namespace TrainingAtentional.Admin
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Login.aspx", false);
         }
     }
 }

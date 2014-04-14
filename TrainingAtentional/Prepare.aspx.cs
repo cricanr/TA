@@ -25,7 +25,7 @@ namespace TrainingAtentional
 
         protected void btnStart_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/DotProbe.aspx");
+            Response.Redirect("~/DotProbe.aspx", false);
         }
     }
 }

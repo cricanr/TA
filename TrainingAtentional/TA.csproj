@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TrainingAtentional</RootNamespace>
     <AssemblyName>TrainingAtentional</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,13 +43,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Web.ASPxEditors.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.Web.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\UserInfo.aspx" />
+    <Content Include="Error\14-00-14.txt" />
     <Content Include="Exit.aspx" />
     <Content Include="ExitOrContinueToStep2.aspx" />
     <Content Include="ExitOrContinueToStep3.aspx" />
@@ -284,7 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
@@ -294,8 +291,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Properties\PublishProfiles\ta2sesiuni.pubxml" />
     <None Include="Properties\PublishProfiles\trainingatentional2sesiuni - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\trainingatentional2sesiuni - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\trainingatentional2sesiuni.pubxml" />
     <None Include="Properties\PublishProfiles\TrainingAtentionalCopii2Sesiuni.pubxml" />
   </ItemGroup>
   <PropertyGroup>

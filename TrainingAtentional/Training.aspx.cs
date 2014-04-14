@@ -165,7 +165,7 @@ namespace TrainingAtentional
                     
                     // TODO: check if this logic is still needed
                     //if (ExtraMySession.Stage == 1)
-                    //    hIsTest.Value = "1";
+                    hIsTest.Value = "1";
                     //else
                     //    hIsTest.Value = "0";
 

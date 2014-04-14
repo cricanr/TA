@@ -20,7 +20,7 @@ namespace TrainingAtentional
         {
             //Session["mySession"] = null;
             Session.Clear();
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Login.aspx", false);
         }
     }
 }

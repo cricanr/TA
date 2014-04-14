@@ -17,7 +17,7 @@ namespace TrainingAtentional
         protected void btnLogOut_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("~/Finish.aspx");
+            Response.Redirect("~/Finish.aspx", false);
         }
     }
 }

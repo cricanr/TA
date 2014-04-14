@@ -49,10 +49,10 @@ namespace TrainingAtentional
                 Session["mySession"] = mySession;
 
                 if (txtUser.Text == Settings.CONST_AdminFullName)
-                    Response.Redirect("~/TrainingResults.aspx");
+                    Response.Redirect("~/TrainingResults.aspx", false);
                 else
                 {
-                    Response.Redirect("~/Prepare.aspx");
+                    Response.Redirect("~/Prepare.aspx", false);
                     
                 }
             }

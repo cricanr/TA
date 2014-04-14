@@ -35,24 +35,24 @@ namespace TrainingAtentional
 
 
                     if (txtUser.Text == Settings.CONST_AdminFullName)
-                        Response.Redirect("~/Admin/TrainingResults.aspx");
+                        Response.Redirect("~/Admin/TrainingResults.aspx", false);
                     else
                     {
                         if (stage == 0)
                         {
-                            Response.Redirect("~/Prepare.aspx"); 
+                            Response.Redirect("~/Prepare.aspx", false); 
                         }
                         else if (stage > 0 && stage <= trainingSessions)
                         {
-                            Response.Redirect("~/Training.aspx"); 
+                            Response.Redirect("~/Training.aspx", false); 
                         } 
                         else if (stage == trainingSessions + 1) {
                                 //Response.Redirect("~/DotProbe.aspx");
-                            Response.Redirect("~/Prepare.aspx");
+                            Response.Redirect("~/Prepare.aspx", false);
                         }
                         else
                         {
-                            Response.Redirect("~/Thanks.aspx");
+                            Response.Redirect("~/Thanks.aspx", false);
                         }
                         
                         
